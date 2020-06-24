@@ -17,7 +17,7 @@ Unzip the folder and rename it to neo4j and place it in lib directory of the fil
  * `Jena` XX, a freely available XX system, can be downloaded from (). We require java apis which can be found in lib
 dir8ectory. 
 
- * We also need 'google.guava.XX' java APIs (.jar).
+ * We also need com.google.guava_1.6.0.jar java APIs (.jar).
 
 You need to download and move the jar files in appropriate duectories as mentioned along side.
 You can also download all the java API using link (host all used apisXX). 
@@ -28,7 +28,7 @@ You can also download all the java API using link (host all used apisXX).
 
 The format of 3 files which user needs to supply to the framework are as following,
 
-1. A tab-separated file [factFile.tsv] listing all the facts of the knowledge graph as triples.
+1. A tab-separated file *factFile.tsv* listing all the facts of the knowledge graph as triples.
 ```
 <subject1-URI>  <predicate1-URI>   <object1-URI>
 .
@@ -36,21 +36,21 @@ The format of 3 files which user needs to supply to the framework are as followi
 <subject-URI>  <predicate1-URI>   <object1-URI>
 ```
 
-2. A file, [rawQueryList.txt], containing all the sparql queries which user wants to register with HUKA for maintenance. Each line should contain a single query as shown below,
+2. A file, *rawQueryList.txt*, containing all the sparql queries which user wants to register with HUKA for maintenance. Each line should contain a single query as shown below,
 ```
 SPARQL-Query1
 ..
 SPARQL-Queryn
 ```
 
-3. Lastly, a tab-separated file [updateRequest.txt] listing down all the edge update (insertion/deletion) requests in the following format,
+3. Lastly, a tab-separated file *updateRequest.txt* listing down all the edge update (insertion/deletion) requests in the following format,
 ```
 <OutgoingVertexId_i>   <IncomingVertexId_i> <OutgoingVertexLabel_i>   <IncomingVertexLabel_i> <EdgeLabel_i> <EdgeId_i> <Operation_i (I/D)>
 .
 <OutgoingVertexId_j>   <IncomingVertexId_j> <OutgoingVertexLabel_j>   <IncomingVertexLabel_j> <EdgeLabel_j> <EdgeId_j> <Operation_j (I/D)>
 ```
 
-A sample of each expected file is given in `sample/` directory. These sample files have headers for the convenience of explaining the data, however original files do not require headers.
+A sample of each expected file is given in [sample/](sample/) directory. These sample files have headers for the convenience of explaining the data, however original files do not require headers.
 
 ### Framework
 
@@ -58,22 +58,21 @@ HUKA performs three main task (in order) -- creating and populating databases, r
 We next provide details of how to perform each task, along with their input file format.
 
 
-1. `Database construction`: Run the bash script `XX` in directory [scripts]. It works with the file containing list of all the triples consisting a dataset.
+1. `Database construction`: Run the bash script [prepareDataFile.sh](test/sql/prepareDataFile.sh) in directory [scripts](scripts/). It works with the file containing list of all the triples consisting a dataset.
 ```
 cd scripts
-./XX <factFile> <datasetName>
+./prepareDataFile.sh <factFile> <datasetName>
 ```
-After execution of [XX.sh], the fact file could be found in directory [/meta/<dataset>/kg/raw/]. Before, next two tasks, query registration and maintaining query results, set few parameters in [conf] file. The parameter values which a user needs to set are marked with * in [conf] file.
+After execution of  [prepareDataFile.sh](test/sql/prepareDataFile.sh), the fact file could be found in directory [/meta/dataset/kg/raw/]([/meta/dataset/kg/raw/). Before, next two tasks, query registration and maintaining query results, set few parameters in [conf](conf) file. The parameter values which a user needs to set are marked with * in [conf](conf) file.
 
-2. `Query Registration`: A bash script [query_registration.sh] compiles and runs query registration module which build all required supporting 
-data structures.
+2. `Query Registration`: A bash script [query_registration.sh](query_registration.sh) compiles and runs query registration module which build all required supporting data structures.
 ```
-./XX <queryFile> <datasetName>
+./query_registration.sh <queryFile> <datasetName>
 ```
 
-3. `Update request handling`: Run [update.sh] with the [updateRequests.txt] file listing all the update requests.
+3. `Update request handling`: Run [update.sh](update.sh) with the *updateRequests.txt* file listing all the update requests.
 ```
-./XX <updateFile> <datasetName>
+./update.sh <updateFile> <datasetName>
 ```
 
 ## License
