@@ -1,4 +1,4 @@
-# HUKA (Maintaining How provenance under Updates to Knowledge Graphs)
+# HUKA
 
 HUKA is a framework which maintains result of graph queries along  with their provenance under dynamic knowledge graphs (KG).
 Addition or removal of new information in a knowledge graph often leads to insertion or deletion of an edge in the KG.
@@ -22,52 +22,59 @@ dir8ectory.
 You need to download and move the jar files in appropriate duectories as mentioned along side.
 You can also download all the java API using link (host all used apisXX). 
 
-##Usage
+## Usage
 
-HUKA performs three main task (in order) -- creating and populating databases, registering queries and then finally, handling KG update requests.
-We next provide details of how to perform each task, along with their input file format.
+### Input File Format
 
+The format of 3 files which user needs to supply to the framework are as following,
 
-1. `Database construction`: Run the bash script `XX` in scripts/ directory. It expects a file containing list of all the triples consisting a dataset as input. 
+1. A tab-separated file [factFile.tsv] listing all the facts of the knowledge graph as triples.
 ```
-cd scripts
-./XX <factFile>
-```
-
-2. `Query Registration`: A bash script `query_registration.sh` compiles and runs query registration module which build all required supporting 
-data structures.
-```
-./XX <queryFile>
-```
-
-3. `Update request handling`: Run `update.sh` with a file `uspdateRequests.txt` listing all the update requests.
-```
-./XX <updateFile>
-```
-
-
-The format of expected input files is given below,
-
-1. A tab-separated file fact file `factFile.tsv`
-```
-<subject1-URI>  <predicate1-URI>   <object1-URI>.
+<subject1-URI>  <predicate1-URI>   <object1-URI>
 .
 .
-<subject-URI>  <predicate1-URI>   <object1-URI>.
+<subject-URI>  <predicate1-URI>   <object1-URI>
 ```
-2. `rawqueryList.txt`, a file containing list of queries which needs to be registered with HUKA for maintenance, and,
+
+2. A file, [rawQueryList.txt], containing all the sparql queries which user wants to register with HUKA for maintenance. Each line should contain a single query as shown below,
 ```
 SPARQL-Query1
 ..
 SPARQL-Queryn
 ```
-3. .`updateRequest.txt` contains edge update (insertion/deletion) requests. 
+
+3. Lastly, a tab-separated file [updateRequest.txt] listing down all the edge update (insertion/deletion) requests in the following format,
 ```
-<OutgoingVertexId>   <IncomingVertexId> <OutgoingVertexLabel>   <IncomingVertexLabel> <EdgeLable> <EdgeId> <Operation (I/D)>
+<OutgoingVertexId_i>   <IncomingVertexId_i> <OutgoingVertexLabel_i>   <IncomingVertexLabel_i> <EdgeLabel_i> <EdgeId_i> <Operation_i (I/D)>
+.
+<OutgoingVertexId_j>   <IncomingVertexId_j> <OutgoingVertexLabel_j>   <IncomingVertexLabel_j> <EdgeLabel_j> <EdgeId_j> <Operation_j (I/D)>
 ```
 
-A sample of each expected file is given in `sample/` directory.
-The sample files have headers for the convenience of explaining the data, however original files do not require headers.
+A sample of each expected file is given in `sample/` directory. These sample files have headers for the convenience of explaining the data, however original files do not require headers.
+
+### Framework
+
+HUKA performs three main task (in order) -- creating and populating databases, registering queries and then finally, handling KG update requests.
+We next provide details of how to perform each task, along with their input file format.
+
+
+1. `Database construction`: Run the bash script `XX` in directory [scripts]. It works with the file containing list of all the triples consisting a dataset.
+```
+cd scripts
+./XX <factFile> <datasetName>
+```
+After execution of [XX.sh], the fact file could be found in directory [/meta/<dataset>/kg/raw/]. Before, next two tasks, query registration and maintaining query results, set few parameters in [conf] file. The parameter values which a user needs to set are marked with * in [conf] file.
+
+2. `Query Registration`: A bash script [query_registration.sh] compiles and runs query registration module which build all required supporting 
+data structures.
+```
+./XX <queryFile> <datasetName>
+```
+
+3. `Update request handling`: Run [update.sh] with the [updateRequests.txt] file listing all the update requests.
+```
+./XX <updateFile> <datasetName>
+```
 
 ## License
 
