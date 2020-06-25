@@ -6,7 +6,7 @@ HUKA efficiently identifies and update precomputed answers of all the registered
 HUKA currently supports positive conjunctive SPARQL queries. The provenance model employed is an
 adaptation of the popular how-provenance model, provenance semiring. 
 
-## Prerequisites for installation
+## Prerequisite installations
 
  * An installation of `Neo4j` graph database server along with bulk-import utility. The framework currently uses
 Neo4j 3.9.9 version. You can download Neo4j from their official download page (https://neo4j.com/download-center/#enterprise).
