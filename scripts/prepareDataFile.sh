@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # First create entity, relation files, then assign annotate data and create Neo4J import files
 
