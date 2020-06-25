@@ -1,9 +1,8 @@
-DATASET	yago
-GRAPH_DATABASE	./meta/DATASET/kg/db/titan/DATASET/
+DATASET	*
+GRAPH_DATABASE	./meta/DATASET/kg/db/neo4j/DATASET/
 SQL_DB	DATASET
-SQL_USERNAME	root
-SQL_PASSWD	qwerty
-RDF_DATASTORE	./meta/DATASET/kg/db/rdf/
+SQL_USERNAME	*
+SQL_PASSWD	*
 QUERY_RESULT_FILE	./meta/DATASET/query/result/
 SUBQUERY_OBJ_MAP	./meta/DATASET/subquery/global/subqueryObjectMap.ser
 INVERTED_INDEX	./meta/DATASET/query/global/DATASET_index
@@ -11,7 +10,6 @@ EDGE_TO_CP_MAP	./meta/DATASET/subquery/global/edgeToCP.ser
 GLOBAL_EXC_GRAPH	./meta/DATASET/subquery/executionPlan/subquery-global-execution.ser
 BASE_NODE_MAP	./meta/DATASET/subquery/executionPlan/subquery-baseNodeMap.ser
 INTERNAL_NODE_MAP	./meta/DATASET/subquery/executionPlan/subquery-internalNodeMap.ser
-TITAN_BACKEND	berkeleyje
 SUBQUERY_META	./meta/DATASET/subquery/global/meta_query.txt
 CS	./meta/DATASET/kg/global/CS.ser
 CS_COUNT	./meta/DATASET/kg/global/CScount.ser
