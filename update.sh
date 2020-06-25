@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 changesFile=$1
 dataset=$2
