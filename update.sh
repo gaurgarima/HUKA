@@ -1,6 +1,6 @@
 
 changesFile=$1
-libPath="./:./lib/*:./lib/jena/*:./lib/neo4j/*:./lib/virtuoso-jena/*"
-
+dataset=$2
+libPath="./:./lib/*:./lib/jena/*:./lib/neo4j/*"
 javac -cp $libPath main/Main.java
-#java -cp $libPath main/Main $changesFile
+java -cp $libPath main/Main $changesFile
