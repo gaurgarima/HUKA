@@ -8,21 +8,18 @@ adaptation of the popular how-provenance model, provenance semiring.
 
 ## Prerequisites for installation
 
- * An installation of `Neo4j` graph database along with bulk-import utility. The framework currently uses
-Neo4j 3.9.9 version. You can download Neo4j from their official download page (URL).
+ * An installation of `Neo4j` graph database server along with bulk-import utility. The framework currently uses
+Neo4j 3.9.9 version. You can download Neo4j from their official download page (https://neo4j.com/download-center/#enterprise).
 Unzip the folder and rename it to neo4j and place it in [lib/](lib/) directory of the file
 
- * Setup open-source relational database `MariaDB` server [https://mariadb.org/download/]. HUKA uses MariaDB 2.4.1. 
- Also, download MariaDB JDBC connector from [https://downloads.mariadb.org/connector-java/+releases/] and put the .jar files in directory [lib/](lib/).
+ * Setup open-source relational database `MariaDB` server https://mariadb.org/download/. HUKA uses MariaDB 2.4.1. 
+ Also, download MariaDB JDBC connector from https://downloads.mariadb.org/connector-java/+releases/ and put the .jar files in directory [lib/](lib/).
 
- * `Apache Jena` .0, a freely available Java framework for semantic web applications, can be downloaded from (https://jena.apache.org/download/index.cgi). 
- Unzip and rename the downloaded folder to [jena]() and move it to [lib/](lib/).
-  to the [lib/](lib/) folder of the repository.
+ * `Apache Jena`, a freely available Java framework for semantic web applications, can be downloaded from https://jena.apache.org/download/index.cgi. 
+ Unzip and rename the downloaded folder to *jena* and move it to the [lib/](lib/) directory of the repository.
 
- * Finally, downlad Google core java library guava.jar from [http://www.java2s.com/Code/Jar/g/Downloadguavajar.htm] and move it directory [lib/](lib/).
+ * Finally, download Google core java library guava.jar from http://www.java2s.com/Code/Jar/g/Downloadguavajar.htm and move it directory [lib/](lib/).
  directory.
-
- User can either download each java APIs individually or can download all the APIs used in framework from [].
 
 ## Usage
 
@@ -84,3 +81,4 @@ HUKA is provided as open-source software under the MIT License. See [LICENSE](LI
 https://github.com/gaurgarima/HUKA
 
 Garima Gaur <garimag@cse.iitk.ac.in>
+
