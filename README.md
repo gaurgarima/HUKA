@@ -9,18 +9,20 @@ adaptation of the popular how-provenance model, provenance semiring.
 ## Prerequisites for installation
 
  * An installation of `Neo4j` graph database along with bulk-import utility. The framework currently uses
-XX version. You can download Neo4j from their official download page (URL).
-Unzip the folder and rename it to neo4j and place it in lib directory of the file
+Neo4j 3.9.9 version. You can download Neo4j from their official download page (URL).
+Unzip the folder and rename it to neo4j and place it in [lib/](lib/) directory of the file
 
- * Setup `MariaDB` XX. Along with jdbc pacakge () to access the SQL db. 
+ * Setup open-source relational database `MariaDB` server [https://mariadb.org/download/]. HUKA uses MariaDB 2.4.1. 
+ Also, download MariaDB JDBC connector from [https://downloads.mariadb.org/connector-java/+releases/] and put the .jar files in directory [lib/](lib/).
 
- * `Jena` XX, a freely available XX system, can be downloaded from (). We require java apis which can be found in lib
-dir8ectory. 
+ * `Apache Jena` .0, a freely available Java framework for semantic web applications, can be downloaded from (https://jena.apache.org/download/index.cgi). 
+ Unzip and rename the downloaded folder to [jena]() and move it to [lib/](lib/).
+  to the [lib/](lib/) folder of the repository.
 
- * We also need com.google.guava_1.6.0.jar java APIs (.jar).
+ * Finally, downlad Google core java library guava.jar from [http://www.java2s.com/Code/Jar/g/Downloadguavajar.htm] and move it directory [lib/](lib/).
+ directory.
 
-You need to download and move the jar files in appropriate duectories as mentioned along side.
-You can also download all the java API using link (host all used apisXX). 
+ User can either download each java APIs individually or can download all the APIs used in framework from [].
 
 ## Usage
 
@@ -31,8 +33,7 @@ The format of 3 files which user needs to supply to the framework are as followi
 1. A tab-separated file *factFile.tsv* listing all the facts of the knowledge graph as triples.
 ```
 <subject1-URI>  <predicate1-URI>   <object1-URI>
-.
-.
+..
 <subject-URI>  <predicate1-URI>   <object1-URI>
 ```
 
@@ -46,7 +47,7 @@ SPARQL-Queryn
 3. Lastly, a tab-separated file *updateRequest.txt* listing down all the edge update (insertion/deletion) requests in the following format,
 ```
 <OutgoingVertexId_i>   <IncomingVertexId_i> <OutgoingVertexLabel_i>   <IncomingVertexLabel_i> <EdgeLabel_i> <EdgeId_i> <Operation_i (I/D)>
-.
+..
 <OutgoingVertexId_j>   <IncomingVertexId_j> <OutgoingVertexLabel_j>   <IncomingVertexLabel_j> <EdgeLabel_j> <EdgeId_j> <Operation_j (I/D)>
 ```
 
@@ -57,20 +58,19 @@ A sample of each expected file is given in [sample/](sample/) directory. These s
 HUKA performs three main task (in order) -- creating and populating databases, registering queries and then finally, handling KG update requests.
 We next provide details of how to perform each task, along with their input file format.
 
-
-1. `Database construction`: Run the bash script [prepareDataFile.sh](test/sql/prepareDataFile.sh) in directory [scripts](scripts/). It works with the file containing list of all the triples consisting a dataset.
+1. Database construction: Run the bash script [prepareDataFile.sh](test/sql/prepareDataFile.sh) in directory [scripts](scripts/). It works with the file containing list of all the triples consisting a dataset.
 ```
 cd scripts
 ./prepareDataFile.sh <factFile> <datasetName>
 ```
 After execution of  [prepareDataFile.sh](test/sql/prepareDataFile.sh), the fact file could be found in directory [/meta/dataset/kg/raw/]([/meta/dataset/kg/raw/). Before, next two tasks, query registration and maintaining query results, set few parameters in [conf](conf) file. The parameter values which a user needs to set are marked with * in [conf](conf) file.
 
-2. `Query Registration`: A bash script [query_registration.sh](query_registration.sh) compiles and runs query registration module which build all required supporting data structures.
+2. Query Registration: A bash script [query_registration.sh](query_registration.sh) compiles and runs query registration module which build all required supporting data structures.
 ```
 ./query_registration.sh <queryFile> <datasetName>
 ```
 
-3. `Update request handling`: Run [update.sh](update.sh) with the *updateRequests.txt* file listing all the update requests.
+3. Update request handling: Run [update.sh](update.sh) with the *updateRequests.txt* file listing all the update requests.
 ```
 ./update.sh <updateFile> <datasetName>
 ```
